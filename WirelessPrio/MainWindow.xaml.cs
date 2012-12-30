@@ -2,6 +2,7 @@
 {
 	using System.Collections.Generic;
 	using System.Windows;
+	using ViewModel;
 	using Wireless;
 
 	/// <summary>
@@ -12,11 +13,15 @@
 		public MainWindow()
 		{
 			this.InitializeComponent();
+		}
 
+		private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+		{
+			// all done, set the viewmodel
+			this.DataContext = new MainWindowViewModel()
+				{
 
-			var manager = new Manager();
-
-			manager.GetWirelessNetworks();
+				};
 		}
 	}
 }
