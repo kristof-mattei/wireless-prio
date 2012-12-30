@@ -10,7 +10,7 @@
 			var nativeHelper = new NativeHelper();
 
 
-			List<Interface> interfaces = nativeHelper.GetAvailableWirelessInterfaces();
+			List<WirelessInterface> interfaces = nativeHelper.GetAvailableWirelessInterfaces();
 
 
 			// TODO return
