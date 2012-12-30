@@ -59,6 +59,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,6 +74,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SingleInstance.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -102,6 +104,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{8ed922d7-d9c2-4c25-a60a-979993ccf070}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wireless\Wireless.csproj">
       <Project>{9d012b68-aff8-440a-9e0c-c3a02896eef6}</Project>
       <Name>Wireless</Name>
