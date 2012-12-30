@@ -2,9 +2,9 @@
 {
 	using System;
 
-	public class Interface
+	public class WirelessInterface
 	{
-		public Interface(Guid interfaceGuid, string interfaceDescription)
+		public WirelessInterface(Guid interfaceGuid, string interfaceDescription)
 		{
 			this.InterfaceGuid = interfaceGuid;
 
