@@ -1,9 +1,7 @@
-﻿
-namespace Wireless
+﻿namespace Wireless.Native
 {
-	public partial class NativeConstants
+	public static class NativeConstants
 	{
-
 		/// ERROR_SUCCESS -> 0L
 		public const int ERROR_SUCCESS = 0;
 	}
