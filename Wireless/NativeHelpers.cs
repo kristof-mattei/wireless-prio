@@ -7,7 +7,10 @@
 	using Model;
 	using Native;
 
-	public class NativeHelper
+	/// <summary>
+	/// This class acts as a facade to use the native code
+	/// </summary>
+	public class NativeHelper : IDisposable
 	{
 		private IntPtr _handle;
 
@@ -40,10 +43,10 @@
 			WLAN_INTERFACE_INFO_LIST wlanInterfaceInfoList = new WLAN_INTERFACE_INFO_LIST(handle);
 
 			// convert the 'native' type to something we can pass on to the front
-			IEnumerable<WirelessInterface> collection = wlanInterfaceInfoList.InterfaceInfo.Select(e => new WirelessInterface(e.InterfaceGuid, e.strInterfaceDescription));
+			List<WirelessInterface> wirelessInterfaces = wlanInterfaceInfoList.InterfaceInfo.Select(e => new WirelessInterface(e.InterfaceGuid, e.strInterfaceDescription)).ToList();
 
 
-			return new List<WirelessInterface>(collection);
+			return wirelessInterfaces;
 		}
 
 		public List<Profile> GetProfilesForWirelessInterface(Guid interfaceGuid)
@@ -54,8 +57,15 @@
 
 			result.ThrowIfNotSuccess();
 
+			WLAN_PROFILE_INFO_LIST wlanProfileInfoList = new WLAN_PROFILE_INFO_LIST(handle);
 
+			List<Profile> profilesForWirelessInterface = wlanProfileInfoList.ProfileInfo.Select((wlanProfileInfo, index) => new Profile(index, wlanProfileInfo.strProfileName)).ToList();
+			
+			return profilesForWirelessInterface;
+		}
 
-		} 
+		public void Dispose()
+		{
+		}
 	}
 }
