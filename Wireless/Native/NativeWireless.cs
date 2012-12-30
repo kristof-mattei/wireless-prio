@@ -41,5 +41,16 @@
 			[In] [MarshalAs(UnmanagedType.LPStruct)] Guid pInterfaceGuid,
 			[In] IntPtr pReserved,
 			[Out] out IntPtr ppProfileList);
+
+
+
+//		DWORD WINAPI WlanCloseHandle(
+//  _In_        HANDLE hClientHandle,
+//  _Reserved_  PVOID pReserved
+//);
+		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true)]
+		public static extern uint WlanCloseHandle(
+			[In] IntPtr hClientHandle,
+			[In] IntPtr pReserved);
 	}
 }
