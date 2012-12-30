@@ -42,6 +42,8 @@
 
 			WLAN_INTERFACE_INFO_LIST wlanInterfaceInfoList = new WLAN_INTERFACE_INFO_LIST(handle);
 
+			NativeWireless.WlanFreeMemory(handle);
+
 			// convert the 'native' type to something we can pass on to the front
 			List<WirelessInterface> wirelessInterfaces = wlanInterfaceInfoList.InterfaceInfo.Select(e => new WirelessInterface(e.InterfaceGuid, e.strInterfaceDescription)).ToList();
 
@@ -53,19 +55,29 @@
 		{
 			IntPtr handle;
 
-			uint result = NativeWireless.WlanGetProfileList(this.GetHandle(), interfaceGuid, IntPtr.Zero, out handle);
+			uint result = NativeWireless.WlanGetProfileList(this.GetHandle(), ref interfaceGuid, IntPtr.Zero, out handle);
 
 			result.ThrowIfNotSuccess();
 
 			WLAN_PROFILE_INFO_LIST wlanProfileInfoList = new WLAN_PROFILE_INFO_LIST(handle);
+
+			NativeWireless.WlanFreeMemory(handle);
 
 			List<Profile> profilesForWirelessInterface = wlanProfileInfoList.ProfileInfo.Select((wlanProfileInfo, index) => new Profile(index, wlanProfileInfo.strProfileName)).ToList();
 			
 			return profilesForWirelessInterface;
 		}
 
+		public void DeleteProfile(Guid interfaceGuid, string profileName)
+		{
+			uint result = NativeWireless.WlanDeleteProfile(GetHandle(), ref interfaceGuid, profileName, IntPtr.Zero);
+
+			result.ThrowIfNotSuccess();
+		}
+
 		public void Dispose()
 		{
+			// close the handle
 		}
 	}
 }
