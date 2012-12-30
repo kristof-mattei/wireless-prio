@@ -79,5 +79,10 @@
 		{
 			// close the handle
 		}
+
+		~NativeHelper()
+		{
+			
+		}
 	}
 }

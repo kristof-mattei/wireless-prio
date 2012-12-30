@@ -4,27 +4,12 @@
 	using System.ComponentModel;
 	using System.Runtime.CompilerServices;
 	using Annotations;
+	using Model;
 
-	public class MainWindowViewModel : INotifyPropertyChanged
+	public class WirelessInterfaceWithProfiles : INotifyPropertyChanged
 	{
-		private ObservableCollection<WirelessInterfaceWithProfiles> _wirelessInterfacesWithProfiles;
-
-		public ObservableCollection<WirelessInterfaceWithProfiles> WirelessInterfacesWithProfiles
-		{
-			get
-			{
-				return this._wirelessInterfacesWithProfiles;
-			}
-			set
-			{
-				if (Equals(value, this._wirelessInterfacesWithProfiles))
-				{
-					return;
-				}
-				this._wirelessInterfacesWithProfiles = value;
-				this.OnPropertyChanged();
-			}
-		}
+		public WirelessInterface WirelessInterface { get; set; }
+		public ObservableCollection<Profile> Profiles { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

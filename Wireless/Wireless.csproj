@@ -44,7 +44,6 @@
     <Compile Include="Native\WLAN_INTERFACE_STATE.cs" />
     <Compile Include="Native\WLAN_PROFILE_INFO.cs" />
     <Compile Include="Native\WLAN_PROFILE_INFO_LIST.cs" />
-    <Compile Include="Manager.cs" />
     <Compile Include="Native\NativeWireless.cs" />
     <Compile Include="Native\NativeConstants.cs" />
     <Compile Include="NativeErrorHelper.cs" />

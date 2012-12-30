@@ -3,7 +3,7 @@
 	using System;
 	using System.Runtime.InteropServices;
 
-	public static class NativeWireless
+	internal static class NativeWireless
 	{
 		//DWORD WINAPI WlanOpenHandle(
 		//  _In_        DWORD dwClientVersion,

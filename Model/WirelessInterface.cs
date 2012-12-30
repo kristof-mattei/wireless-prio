@@ -14,5 +14,29 @@
 		public string InterfaceDescription { get; private set; }
 
 		public Guid InterfaceGuid { get; private set; }
+
+		protected bool Equals(WirelessInterface other)
+		{
+			return this.InterfaceGuid.Equals(other.InterfaceGuid);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj))
+			{
+				return false;
+			}
+			if (ReferenceEquals(this, obj))
+			{
+				return true;
+			}
+			var other = obj as WirelessInterface;
+			return other != null && Equals(other);
+		}
+
+		public override int GetHashCode()
+		{
+			return this.InterfaceGuid.GetHashCode();
+		}
 	}
 }
