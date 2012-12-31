@@ -36,11 +36,11 @@
 				List<WirelessInterface> allInterfaces = nativeHelper.GetAvailableWirelessInterfaces();
 
 				// get all their profiles
-				IEnumerable<WirelessInterfaceWithProfiles> interfacesWithProfiles = allInterfaces.Select(e => new WirelessInterfaceWithProfiles()
+				List<WirelessInterfaceWithProfiles> interfacesWithProfiles = allInterfaces.Select(e => new WirelessInterfaceWithProfiles()
 					{
 						WirelessInterface = e,
 						Profiles = new ObservableCollection<Profile>(nativeHelper.GetProfilesForWirelessInterface(e.InterfaceGuid)),
-					});
+					}).ToList();
 
 				return new ObservableCollection<WirelessInterfaceWithProfiles>(interfacesWithProfiles);
 			}
