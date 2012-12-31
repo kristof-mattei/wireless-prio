@@ -1,6 +1,5 @@
 ﻿namespace WirelessPrio
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System.Linq;
@@ -24,20 +23,20 @@
 			// all done, set the viewmodel
 			this.DataContext = new MainWindowViewModel()
 				{
-					WirelessInterfacesWithProfiles = GetAllWirelessConnectionsWithProfiles(),
+					WirelessInterfacesWithProfiles = this.GetAllWirelessConnectionsWithProfiles(),
 				};
 		}
 
 		private ObservableCollection<WirelessInterfaceWithProfiles> GetAllWirelessConnectionsWithProfiles()
 		{
-			using (var nativeHelper = new Wireless.NativeHelper())
+			using (var nativeHelper = new WirelessManager())
 			{
 				// build list
 
-				var allInterfaces = nativeHelper.GetAvailableWirelessInterfaces();
+				List<WirelessInterface> allInterfaces = nativeHelper.GetAvailableWirelessInterfaces();
 
 				// get all their profiles
-				var interfacesWithProfiles = allInterfaces.Select(e => new WirelessInterfaceWithProfiles()
+				IEnumerable<WirelessInterfaceWithProfiles> interfacesWithProfiles = allInterfaces.Select(e => new WirelessInterfaceWithProfiles()
 					{
 						WirelessInterface = e,
 						Profiles = new ObservableCollection<Profile>(nativeHelper.GetProfilesForWirelessInterface(e.InterfaceGuid)),

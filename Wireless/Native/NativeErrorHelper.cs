@@ -1,7 +1,6 @@
-﻿namespace Wireless
+﻿namespace Wireless.Native
 {
 	using System.ComponentModel;
-	using Native;
 
 	public static class NativeErrorHelper
 	{

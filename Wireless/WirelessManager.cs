@@ -10,7 +10,7 @@
 	/// <summary>
 	/// This class acts as a facade to use the native code
 	/// </summary>
-	public class NativeHelper : IDisposable
+	public class NativeWirelessFacade : IDisposable
 	{
 		private IntPtr _handle;
 
@@ -77,12 +77,12 @@
 
 		public void Dispose()
 		{
-			// close the handle
+			// TODO close the handle
 		}
 
-		~NativeHelper()
+		~NativeWirelessFacade()
 		{
-			
+			// TODO clean up
 		}
 	}
 }
