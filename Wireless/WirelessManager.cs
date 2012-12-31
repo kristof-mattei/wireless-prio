@@ -10,7 +10,7 @@
 	/// <summary>
 	/// This class acts as a facade to use the native code
 	/// </summary>
-	public class NativeWirelessFacade : IDisposable
+	public class WirelessManager : IDisposable
 	{
 		private IntPtr _handle;
 
@@ -80,7 +80,7 @@
 			// TODO close the handle
 		}
 
-		~NativeWirelessFacade()
+		~WirelessManager()
 		{
 			// TODO clean up
 		}
