@@ -5,14 +5,14 @@
 	/// </summary>
 	public class Profile
 	{
-		public Profile(int index, string profileName)
+		public Profile(uint index, string profileName)
 		{
 			this.Index = index;
 			this.ProfileName = profileName;
 		}
 
 		public string ProfileName { get; private set; }
-		public int Index { get; private set; }
+		public uint Index { get; private set; }
 
 		protected bool Equals(Profile other)
 		{

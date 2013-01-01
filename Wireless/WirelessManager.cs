@@ -70,7 +70,7 @@
 
 			NativeWireless.WlanFreeMemory(handle);
 
-			List<Profile> profilesForWirelessInterface = wlanProfileInfoList.ProfileInfo.Select((wlanProfileInfo, index) => new Profile(index, wlanProfileInfo.strProfileName)).ToList();
+			List<Profile> profilesForWirelessInterface = wlanProfileInfoList.ProfileInfo.Select((wlanProfileInfo, index) => new Profile((uint) index, wlanProfileInfo.strProfileName)).ToList();
 
 			return profilesForWirelessInterface;
 		}
@@ -100,10 +100,10 @@
 				// not now
 			}
 
-
 			if (IntPtr.Zero != this._handle)
 			{
 				NativeWireless.WlanCloseHandle(this._handle, IntPtr.Zero);
+				this._handle = IntPtr.Zero;
 			}
 		}
 	}
