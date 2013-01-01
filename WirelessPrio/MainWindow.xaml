@@ -8,8 +8,10 @@
 		Title="MainWindow"
 		Height="300"
 		Width="300"
-		Loaded="MainWindow_OnLoaded"
 		d:DataContext="{d:DesignInstance ViewModel:MainWindowViewModel}">
+	<Window.DataContext>
+		<ViewModel:MainWindowViewModel />
+	</Window.DataContext>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />

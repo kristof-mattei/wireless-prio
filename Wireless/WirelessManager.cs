@@ -55,7 +55,6 @@
 			// convert the 'native' type to something we can pass on to the front
 			List<WirelessInterface> wirelessInterfaces = wlanInterfaceInfoList.InterfaceInfo.Select(e => new WirelessInterface(e.InterfaceGuid, e.strInterfaceDescription)).ToList();
 
-
 			return wirelessInterfaces;
 		}
 
@@ -81,6 +80,11 @@
 			uint result = NativeWireless.WlanDeleteProfile(this.GetHandle(), ref interfaceGuid, profileName, IntPtr.Zero);
 
 			result.ThrowIfNotSuccess();
+		}
+
+		public void SetProfilePosition(Guid interfaceGuid, string profileName, uint position)
+		{
+			NativeWireless.WlanSetProfilePosition(this.GetHandle(), ref interfaceGuid, profileName, position, IntPtr.Zero).ThrowIfNotSuccess();
 		}
 
 		~WirelessManager()
