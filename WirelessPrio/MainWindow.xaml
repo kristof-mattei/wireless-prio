@@ -7,8 +7,7 @@
 		mc:Ignorable="d"
 		Title="MainWindow"
 		Height="300"
-		Width="300"
-		d:DataContext="{d:DesignInstance ViewModel:MainWindowViewModel}">
+		Width="300">
 	<Window.DataContext>
 		<ViewModel:MainWindowViewModel />
 	</Window.DataContext>
