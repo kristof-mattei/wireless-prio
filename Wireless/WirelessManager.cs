@@ -8,11 +8,17 @@
 	using Native;
 
 	/// <summary>
-	/// This class acts as a facade to use the native code
+	///     This class acts as a facade to use the native code
 	/// </summary>
 	public class WirelessManager : IDisposable
 	{
 		private IntPtr _handle;
+
+		public void Dispose()
+		{
+			this.Dispose(true);
+			GC.SuppressFinalize(this);
+		}
 
 		private IntPtr GetHandle()
 		{
@@ -25,7 +31,9 @@
 				uint result = NativeWireless.WlanOpenHandle(2, IntPtr.Zero, out negotiatedVersion, out this._handle);
 
 				if (NativeConstants.ERROR_SUCCESS != result)
+				{
 					throw new Win32Exception((int) result);
+				}
 			}
 
 
@@ -40,7 +48,7 @@
 
 			result.ThrowIfNotSuccess();
 
-			WLAN_INTERFACE_INFO_LIST wlanInterfaceInfoList = new WLAN_INTERFACE_INFO_LIST(handle);
+			var wlanInterfaceInfoList = new WLAN_INTERFACE_INFO_LIST(handle);
 
 			NativeWireless.WlanFreeMemory(handle);
 
@@ -59,30 +67,40 @@
 
 			result.ThrowIfNotSuccess();
 
-			WLAN_PROFILE_INFO_LIST wlanProfileInfoList = new WLAN_PROFILE_INFO_LIST(handle);
+			var wlanProfileInfoList = new WLAN_PROFILE_INFO_LIST(handle);
 
 			NativeWireless.WlanFreeMemory(handle);
 
 			List<Profile> profilesForWirelessInterface = wlanProfileInfoList.ProfileInfo.Select((wlanProfileInfo, index) => new Profile(index, wlanProfileInfo.strProfileName)).ToList();
-			
+
 			return profilesForWirelessInterface;
 		}
 
 		public void DeleteProfile(Guid interfaceGuid, string profileName)
 		{
-			uint result = NativeWireless.WlanDeleteProfile(GetHandle(), ref interfaceGuid, profileName, IntPtr.Zero);
+			uint result = NativeWireless.WlanDeleteProfile(this.GetHandle(), ref interfaceGuid, profileName, IntPtr.Zero);
 
 			result.ThrowIfNotSuccess();
 		}
 
-		public void Dispose()
-		{
-			// TODO close the handle
-		}
-
 		~WirelessManager()
 		{
-			// TODO clean up
+			this.Dispose(false);
+		}
+
+		private void Dispose(bool fromDispose)
+		{
+			if (fromDispose)
+			{
+				// do we have managed resources that require cleanup ? 
+				// not now
+			}
+
+
+			if (IntPtr.Zero != this._handle)
+			{
+				NativeWireless.WlanCloseHandle(this._handle, IntPtr.Zero);
+			}
 		}
 	}
 }
