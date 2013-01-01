@@ -6,8 +6,8 @@
 		xmlns:ViewModel="clr-namespace:WirelessPrio.ViewModel"
 		mc:Ignorable="d"
 		Title="MainWindow"
-		Height="300"
-		Width="300">
+		Height="561"
+		Width="415">
 	<Window.DataContext>
 		<ViewModel:MainWindowViewModel />
 	</Window.DataContext>
