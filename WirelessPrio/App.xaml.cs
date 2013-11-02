@@ -18,5 +18,9 @@
         }
 
         #endregion
+
+        private void App_OnStartup(object sender, StartupEventArgs e)
+        {
+        }
     }
 }

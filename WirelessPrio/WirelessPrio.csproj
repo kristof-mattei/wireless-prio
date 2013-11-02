@@ -77,7 +77,6 @@
     </Compile>
     <Compile Include="SingleInstance.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\WirelessInterfaceWithProfiles.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,10 +107,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{8ed922d7-d9c2-4c25-a60a-979993ccf070}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Wireless\Wireless.csproj">
       <Project>{9d012b68-aff8-440a-9e0c-c3a02896eef6}</Project>
       <Name>Wireless</Name>
@@ -134,9 +129,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -66,7 +66,7 @@
 		//  _In_        LPCWSTR strProfileName,
 		//  _Reserved_  PVOID pReserved
 		//);
-		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true)]
+		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true, CharSet = CharSet.Unicode)]
 		public static extern uint WlanDeleteProfile(
 			[In] IntPtr hClientHandle,
 			[In] ref Guid pInterfaceGuid,

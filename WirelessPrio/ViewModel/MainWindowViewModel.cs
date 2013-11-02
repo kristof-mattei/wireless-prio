@@ -7,10 +7,10 @@
 	using System.Runtime.CompilerServices;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
-	using Model;
 	using Wireless;
+	using Wireless.Model;
 
-	public class MainWindowViewModel : INotifyPropertyChanged
+    public sealed class MainWindowViewModel : INotifyPropertyChanged
 	{
 		private ObservableCollection<WirelessInterfaceWithProfiles> _wirelessInterfacesWithProfiles;
 
@@ -42,31 +42,20 @@
 		{
 			if (ReferenceEquals(null, this._wirelessInterfacesWithProfiles))
 			{
-				this.WirelessInterfacesWithProfiles = await Task.Factory.StartNew(() => this.GetAllWirelessConnectionsWithProfiles());
+			    this.WirelessInterfacesWithProfiles = await Task.Factory.StartNew(() =>
+			                                                                      {
+			                                                                          using (var wirelessManager = new WirelessManager())
+			                                                                          {
+			                                                                              return wirelessManager.GetAllWirelessConnectionsWithProfiles();
+			                                                                          }
+			                                                                      });
 			}
 		}
 
-		private ObservableCollection<WirelessInterfaceWithProfiles> GetAllWirelessConnectionsWithProfiles()
-		{
-			using (var nativeHelper = new WirelessManager())
-			{
-				// build list
 
-				List<WirelessInterface> allInterfaces = nativeHelper.GetAvailableWirelessInterfaces();
-
-				// get all their profiles
-				List<WirelessInterfaceWithProfiles> interfacesWithProfiles = allInterfaces.Select(e => new WirelessInterfaceWithProfiles()
-					{
-						WirelessInterface = e,
-						Profiles = new ObservableCollection<Profile>(nativeHelper.GetProfilesForWirelessInterface(e.InterfaceGuid)),
-					}).ToList();
-
-				return new ObservableCollection<WirelessInterfaceWithProfiles>(interfacesWithProfiles);
-			}
-		}
 
 		[NotifyPropertyChangedInvocator]
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChangedEventHandler handler = this.PropertyChanged;
 			if (handler != null)

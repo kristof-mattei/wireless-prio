@@ -1,34 +1,40 @@
 ﻿<Window x:Class="WirelessPrio.MainWindow"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:ViewModel="clr-namespace:WirelessPrio.ViewModel"
-		mc:Ignorable="d"
-		Title="MainWindow"
-		Height="561"
-		Width="415">
-	<Window.DataContext>
-		<ViewModel:MainWindowViewModel />
-	</Window.DataContext>
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition />
-		</Grid.RowDefinitions>
-		<ComboBox ItemsSource="{Binding Path=WirelessInterfacesWithProfiles}"
-				DisplayMemberPath="WirelessInterface.InterfaceDescription"
-				IsSynchronizedWithCurrentItem="True" />
-		<ListView Grid.Row="1"
-				DataContext="{Binding Path=WirelessInterfacesWithProfiles}"
-				ItemsSource="{Binding Path=Profiles}">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<Grid>
-						<TextBlock Text="{Binding ProfileName}" />
-					</Grid>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-	</Grid>
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow"
+        xmlns:ViewModel="clr-namespace:WirelessPrio.ViewModel"
+        Height="561"
+        Width="415">
+    <Window.DataContext>
+       <ViewModel:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ComboBox ItemsSource="{Binding Path=WirelessInterfacesWithProfiles}"
+                  DisplayMemberPath="WirelessInterface.InterfaceDescription"
+                  IsSynchronizedWithCurrentItem="True" />
+        <ListBox Grid.Row="1"
+                 HorizontalContentAlignment="Stretch"
+                 DataContext="{Binding Path=WirelessInterfacesWithProfiles}"
+                 ItemsSource="{Binding Path=Profiles}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".7*" />
+                            <ColumnDefinition Width=".1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ProfileName}" />
+                        <Button Grid.Column="1"
+                                Command="{Binding DeleteProfileCommand}">
+                            D
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
 </Window>
