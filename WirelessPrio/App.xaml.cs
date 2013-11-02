@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using System.Windows;
-using Microsoft.Shell;
-
-namespace WirelessPrio
+﻿namespace WirelessPrio
 {
+    using System.Collections.Generic;
+    using System.Windows;
+    using Microsoft.Shell;
+
     /// <summary>
     ///     Interaction logic for App.xaml
     ///     This page is compiled as Page, not as ApplicationDefinition to omit generation of Main method
