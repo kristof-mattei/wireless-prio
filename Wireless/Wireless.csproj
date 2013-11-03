@@ -41,9 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Profile.cs" />
-    <Compile Include="Model\VoidCommand.cs" />
     <Compile Include="Model\WirelessInterface.cs" />
-    <Compile Include="Model\WirelessInterfaceWithProfiles.cs" />
     <Compile Include="Native\WLAN_INTERFACE_INFO.cs" />
     <Compile Include="Native\WLAN_INTERFACE_INFO_LIST.cs" />
     <Compile Include="Native\WLAN_INTERFACE_STATE.cs" />

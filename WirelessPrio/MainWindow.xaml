@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow"
         xmlns:ViewModel="clr-namespace:WirelessPrio.ViewModel"
+        xmlns:Model="clr-namespace:Wireless.Model;assembly=Wireless"
         Height="561"
         Width="415">
     <Window.DataContext>
@@ -18,6 +19,7 @@
                   IsSynchronizedWithCurrentItem="True" />
         <ListBox Grid.Row="1"
                  HorizontalContentAlignment="Stretch"
+                 IsSynchronizedWithCurrentItem="True"
                  DataContext="{Binding Path=WirelessInterfacesWithProfiles}"
                  ItemsSource="{Binding Path=Profiles}">
             <ListBox.ItemTemplate>
@@ -29,9 +31,11 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding ProfileName}" />
                         <Button Grid.Column="1"
-                                Command="{Binding DeleteProfileCommand}">
+                                
+                                CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource Self}}">
                             D
                         </Button>
+                        <!--Command="{Binding Path=Parent.DataContext.DeleteProfileCommand, RelativeSource={RelativeSource Mode=Self}}}"-->
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

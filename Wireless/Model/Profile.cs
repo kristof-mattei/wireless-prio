@@ -1,18 +1,14 @@
 ﻿namespace Wireless.Model
 {
-    using System;
-    using System.Windows.Input;
-
     /// <summary>
     ///     Defines a wireless profile (index and name)
     /// </summary>
     public class Profile
     {
-        public Profile(uint index, string profileName, Action onDeleteAction)
+        public Profile(uint index, string profileName)
         {
             this.Index = index;
             this.ProfileName = profileName;
-            this.DeleteProfileCommand = new VoidCommand(onDeleteAction);
         }
 
         public string ProfileName { get; private set; }
@@ -23,8 +19,6 @@
         ///     To define it's new order
         /// </summary>
         public uint Index { get; private set; }
-
-        public ICommand DeleteProfileCommand { get; set; }
 
         protected bool Equals(Profile other)
         {

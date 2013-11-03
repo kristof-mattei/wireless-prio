@@ -41,7 +41,7 @@
             return this._handle;
         }
 
-        private List<WirelessInterface> GetAvailableWirelessInterfaces()
+        public List<WirelessInterface> GetAvailableWirelessInterfaces()
         {
             IntPtr handle;
 
@@ -59,7 +59,7 @@
             return wirelessInterfaces;
         }
 
-        private List<Profile> GetProfilesForWirelessInterface(Guid interfaceGuid)
+        public List<Profile> GetProfilesForWirelessInterface(Guid interfaceGuid)
         {
             IntPtr handle;
 
@@ -71,11 +71,7 @@
 
             NativeWireless.WlanFreeMemory(handle);
 
-            List<Profile> profilesForWirelessInterface = wlanProfileInfoList.ProfileInfo.Select((wlanProfileInfo, index) => new Profile((uint) index, wlanProfileInfo.strProfileName, () =>
-                                                                                                                                                                                      {
-                                                                                                                                                                                          this.DeleteProfile(interfaceGuid, wlanProfileInfo.strProfileName);
-
-                                                                                                                                                                                      })).ToList();
+            List<Profile> profilesForWirelessInterface = wlanProfileInfoList.ProfileInfo.Select((wlanProfileInfo, index) => new Profile((uint) index, wlanProfileInfo.strProfileName)).ToList();
 
             return profilesForWirelessInterface;
         }
@@ -87,23 +83,7 @@
             result.ThrowIfNotSuccess();
         }
 
-        public ObservableCollection<WirelessInterfaceWithProfiles> GetAllWirelessConnectionsWithProfiles()
-        {
-            using (var nativeHelper = new WirelessManager())
-            {
-                // build list
-                List<WirelessInterface> allInterfaces = nativeHelper.GetAvailableWirelessInterfaces();
-
-                // get all their profiles
-                List<WirelessInterfaceWithProfiles> interfacesWithProfiles = allInterfaces.Select(e => new WirelessInterfaceWithProfiles()
-                                                                                                       {
-                                                                                                           WirelessInterface = e,
-                                                                                                           Profiles = new ObservableCollection<Profile>(nativeHelper.GetProfilesForWirelessInterface(e.InterfaceGuid)),
-                                                                                                       }).ToList();
-
-                return new ObservableCollection<WirelessInterfaceWithProfiles>(interfacesWithProfiles);
-            }
-        }
+  
 
         public void SetProfilePosition(Guid interfaceGuid, string profileName, uint position)
         {

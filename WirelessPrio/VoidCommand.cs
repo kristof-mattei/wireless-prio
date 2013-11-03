@@ -1,4 +1,4 @@
-﻿namespace Wireless.Model
+﻿namespace WirelessPrio
 {
     using System;
     using System.Windows.Input;
@@ -6,11 +6,11 @@
     /// <summary>
     ///     Specifies a command that does something
     /// </summary>
-    internal class VoidCommand : ICommand
+    internal class VoidCommand<T> : ICommand
     {
-        private readonly Action _action;
+        private readonly Action<T> _action;
 
-        public VoidCommand(Action action)
+        public VoidCommand(Action<T> action)
         {
             this._action = action;
         }
@@ -22,7 +22,7 @@
 
         public void Execute(object parameter)
         {
-            this._action();
+            this._action((T) parameter);
         }
 
         public event EventHandler CanExecuteChanged;

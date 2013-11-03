@@ -77,6 +77,8 @@
     </Compile>
     <Compile Include="SingleInstance.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\WirelessInterfaceWithProfiles.cs" />
+    <Compile Include="VoidCommand.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
