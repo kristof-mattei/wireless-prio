@@ -30,11 +30,11 @@
                             <ColumnDefinition Width=".1*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding ProfileName}" />
-                        <Button Grid.Column="1"
+                        <!--<Button Grid.Column="1"
                                 
                                 CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource Self}}">
                             D
-                        </Button>
+                        </Button>-->
                         <!--Command="{Binding Path=Parent.DataContext.DeleteProfileCommand, RelativeSource={RelativeSource Mode=Self}}}"-->
                     </Grid>
                 </DataTemplate>
