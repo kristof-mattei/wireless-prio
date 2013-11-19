@@ -7,7 +7,7 @@
         Height="561"
         Width="415">
     <Window.DataContext>
-       <ViewModel:MainWindowViewModel />
+        <ViewModel:MainWindowViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -26,14 +26,15 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=".7*" />
-                            <ColumnDefinition Width=".1*" />
+                            <ColumnDefinition Width="60*" />
+                            <ColumnDefinition Width="10*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding ProfileName}" VerticalAlignment="Center" />
-                        <Button Grid.Column="1">
+                        <TextBlock Text="{Binding ProfileName}" VerticalAlignment="Center" Height="16" Margin="0,2" />
+                        <Button Grid.Column="1"
+                                Command="{Binding Path=DataContext/DeleteProfileCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                CommandParameter="{Binding}">
                             Delete
                         </Button>
-                        <!--Command="{Binding Path=Parent.DataContext.DeleteProfileCommand, RelativeSource={RelativeSource Mode=Self}}}"-->
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
