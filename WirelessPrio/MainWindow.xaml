@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow"
         xmlns:ViewModel="clr-namespace:WirelessPrio.ViewModel"
-        xmlns:Model="clr-namespace:Wireless.Model;assembly=Wireless"
         Height="561"
         Width="415">
     <Window.DataContext>
