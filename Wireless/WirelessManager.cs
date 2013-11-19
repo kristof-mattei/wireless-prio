@@ -28,7 +28,7 @@
                 // don't need this
                 uint negotiatedVersion;
 
-                // TODO set correct client version
+                // 2 is the correct version for dwClientVersion as per http://msdn.microsoft.com/en-us/library/windows/desktop/ms706759.aspx
                 uint result = NativeWireless.WlanOpenHandle(2, IntPtr.Zero, out negotiatedVersion, out this._handle);
 
                 if (NativeConstants.ERROR_SUCCESS != result)
