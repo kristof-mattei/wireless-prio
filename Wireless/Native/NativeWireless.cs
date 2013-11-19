@@ -11,7 +11,7 @@
 		//  _Out_       PDWORD pdwNegotiatedVersion,
 		//  _Out_       PHANDLE phClientHandle
 		//)
-		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true)]
+        [DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, CharSet = CharSet.Unicode)]
 		public static extern uint WlanOpenHandle(
 			[In] uint dwClientVersion,
 			[In] IntPtr pRservered,
@@ -23,7 +23,7 @@
 		//  _Reserved_  PVOID pReserved,
 		//  _Out_       PWLAN_INTERFACE_INFO_LIST *ppInterfaceList
 		//);
-		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true)]
+        [DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, CharSet = CharSet.Unicode)]
 		public static extern uint WlanEnumInterfaces(
 			[In] IntPtr hClientHandle,
 			[In] IntPtr pRservered,
@@ -35,7 +35,7 @@
 		//  _Reserved_  PVOID pReserved,
 		//  _Out_       PWLAN_PROFILE_INFO_LIST *ppProfileList
 		//);
-		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true)]
+        [DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, CharSet = CharSet.Unicode)]
 		public static extern uint WlanGetProfileList(
 			[In] IntPtr hClientHandle,
 			[In] ref Guid pInterfaceGuid,
@@ -47,7 +47,7 @@
 		//  _In_        HANDLE hClientHandle,
 		//  _Reserved_  PVOID pReserved
 		//);
-		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true)]
+        [DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, CharSet = CharSet.Unicode)]
 		public static extern uint WlanCloseHandle(
 			[In] IntPtr hClientHandle,
 			[In] IntPtr pReserved);
@@ -56,7 +56,7 @@
 		//VOID WINAPI WlanFreeMemory(
 		//  _In_  PVOID pMemory
 		//);
-		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true)]
+        [DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, CharSet = CharSet.Unicode)]
 		public static extern void WlanFreeMemory(
 			[In] IntPtr pMemory);
 
@@ -66,7 +66,7 @@
 		//  _In_        LPCWSTR strProfileName,
 		//  _Reserved_  PVOID pReserved
 		//);
-		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true, CharSet = CharSet.Unicode)]
+		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, CharSet = CharSet.Unicode)]
 		public static extern uint WlanDeleteProfile(
 			[In] IntPtr hClientHandle,
 			[In] ref Guid pInterfaceGuid,
@@ -81,7 +81,7 @@
 		//  _In_        DWORD dwPosition,
 		//  _Reserved_  PVOID pReserved
 		//);
-		[DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, PreserveSig = true)]
+        [DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, CharSet = CharSet.Unicode)]
 		public static extern uint WlanSetProfilePosition(
 			[In] IntPtr hClientHandle, 
 			[In] ref Guid pInterfaceGuid, 
