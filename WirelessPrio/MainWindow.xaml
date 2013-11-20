@@ -29,8 +29,7 @@
                             <ColumnDefinition Width="10*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding ProfileName}"
-                                   VerticalAlignment="Center"
-                                   Height="16" />
+                                   VerticalAlignment="Center" />
                         <Button Grid.Column="1"
                                 Command="{Binding Path=DataContext/DeleteProfileCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                                 CommandParameter="{Binding}">
