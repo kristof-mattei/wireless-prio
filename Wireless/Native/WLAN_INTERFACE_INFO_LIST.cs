@@ -35,13 +35,13 @@ namespace Wireless.Native
             this.dwNumberOfItems = Marshal.ReadInt32(pointerToWlanInterfaceInfoList, 0);
 
             // The next 4 bytes are the index of the current item in the unmanaged API.
-            this.dwIndex = Marshal.ReadInt32(pointerToWlanInterfaceInfoList, 4);
+            this.dwIndex = Marshal.ReadInt32(pointerToWlanInterfaceInfoList, 1 * sizeof(int));
 
             // Construct the array of WLAN_INTERFACE_INFO structures.
             this.InterfaceInfo = new WLAN_INTERFACE_INFO[this.dwNumberOfItems];
 
             // start pointer
-            long start = pointerToWlanInterfaceInfoList.ToInt64() + 8; // we skip 8 for the first and second int in the structure
+            long start = pointerToWlanInterfaceInfoList.ToInt64() + (2 * sizeof(int)); // we skip 8 for the first and second int in the structure
 
             // get the size of WLAN_INTERFACE_INFO
             int sizeOfWlanInterfaceInfo = Marshal.SizeOf(typeof (WLAN_INTERFACE_INFO));
