@@ -1,3 +1,6 @@
+### Status
+[![Build status](https://ci.appveyor.com/api/projects/status/lms9r1g8s50abxom)](https://ci.appveyor.com/project/CSharpFan/wireless-prio)
+
 ### What?
 wireless-prio is a small project designed to view, (re-order), and delete all the wireless networks (profiles) that you once connected to
 
