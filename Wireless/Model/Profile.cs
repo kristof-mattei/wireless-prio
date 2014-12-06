@@ -5,12 +5,15 @@
     /// </summary>
     public class Profile
     {
-        public Profile(uint index, string profileName)
+        internal Profile(uint index, string profileName)
         {
             this.Index = index;
             this.ProfileName = profileName;
         }
 
+        /// <summary>
+        ///     The name of the profile
+        /// </summary>
         public string ProfileName { get; private set; }
 
         /// <summary>
@@ -20,11 +23,26 @@
         /// </summary>
         public uint Index { get; private set; }
 
-        protected bool Equals(Profile other)
+        /// <summary>
+        ///     Determines whether the specified <paramref name="other" /> is equal to the current profile.
+        ///     This is based on the <see cref="ProfileName" />
+        /// </summary>
+        /// <param name="other">Profile to compare to</param>
+        /// <returns><code>true</code> if they're equal, <code>false</code> if they're not.</returns>
+        private bool Equals(Profile other)
         {
             return string.Equals(this.ProfileName, other.ProfileName);
         }
 
+
+        /// <summary>
+        ///     Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <returns>
+        ///     true if the specified object  is equal to the current object; otherwise, false.
+        /// </returns>
+        /// <param name="obj">The object to compare with the current object. </param>
+        /// <filterpriority>2</filterpriority>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -39,6 +57,14 @@
             return other != null && this.Equals(other);
         }
 
+
+        /// <summary>
+        ///     Creates a hashcode for the current profile
+        /// </summary>
+        /// <returns>
+        ///     A hash code for the current object.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
         public override int GetHashCode()
         {
             return (!ReferenceEquals(null, this.ProfileName) ? this.ProfileName.GetHashCode() : 0);

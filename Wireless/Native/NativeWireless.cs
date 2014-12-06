@@ -84,7 +84,7 @@
         [DllImport("wlanapi.dll", CallingConvention = CallingConvention.Winapi, ExactSpelling = true, SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern uint WlanSetProfilePosition(
             [In] IntPtr hClientHandle,
-            [In] ref Guid pInterfaceGuid,
+            [In] Guid pInterfaceGuid,
             [In] string strProfileName,
             [In] uint dwPosition,
             [In] IntPtr pReserved);

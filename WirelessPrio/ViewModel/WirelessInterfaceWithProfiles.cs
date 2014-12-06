@@ -20,7 +20,7 @@
         {
             using (var wirelessManager = new WirelessManager())
             {
-                wirelessManager.DeleteProfile(this.WirelessInterface.InterfaceGuid, profile.ProfileName);
+                wirelessManager.DeleteProfile(this.WirelessInterface, profile);
             }
 
             this.Profiles.Remove(profile);

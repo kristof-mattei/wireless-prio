@@ -3,7 +3,7 @@ namespace Wireless.Native
     /// <summary>
     ///     Defines the state of the interface. e.g. connected, disconnected.
     /// </summary>
-    public enum WLAN_INTERFACE_STATE
+    internal enum WLAN_INTERFACE_STATE
     {
         /// <summary>
         ///     wlan_interface_state_not_ready -> 0

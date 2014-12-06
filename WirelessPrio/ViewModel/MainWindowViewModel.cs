@@ -55,11 +55,13 @@
                 List<WirelessInterface> allInterfaces = wirelessManager.GetAvailableWirelessInterfaces();
 
                 // get all their profiles
-                List<WirelessInterfaceWithProfiles> interfacesWithProfiles = allInterfaces.Select(e => new WirelessInterfaceWithProfiles()
-                                                                                                       {
-                                                                                                           WirelessInterface = e, 
-                                                                                                           Profiles = new ObservableCollection<Profile>(wirelessManager.GetProfilesForWirelessInterface(e.InterfaceGuid)),
-                                                                                                       }).ToList();
+                List<WirelessInterfaceWithProfiles> interfacesWithProfiles = allInterfaces
+                    .Select(e => new WirelessInterfaceWithProfiles()
+                                 {
+                                     WirelessInterface = e,
+                                     Profiles = new ObservableCollection<Profile>(wirelessManager.GetProfilesForWirelessInterface(e)),
+                                 })
+                    .ToList();
 
                 return new ObservableCollection<WirelessInterfaceWithProfiles>(interfacesWithProfiles);
             }

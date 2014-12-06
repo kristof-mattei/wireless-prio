@@ -20,7 +20,7 @@
                  HorizontalContentAlignment="Stretch"
                  IsSynchronizedWithCurrentItem="True"
                  DataContext="{Binding Path=WirelessInterfacesWithProfiles}"
-                 ItemsSource="{Binding Path=Profiles}">
+                 ItemsSource="{Binding Path=Profiles}"  PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

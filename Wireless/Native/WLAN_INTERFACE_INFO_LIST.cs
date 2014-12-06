@@ -6,7 +6,7 @@ namespace Wireless.Native
     /// <summary>
     ///     Contains an array of NIC information
     /// </summary>
-    public struct WLAN_INTERFACE_INFO_LIST
+    internal struct WLAN_INTERFACE_INFO_LIST
     {
         /// <summary>
         ///     Array of WLAN interfaces.

@@ -3,7 +3,7 @@ namespace Wireless.Native
     using System;
     using System.Runtime.InteropServices;
 
-    public struct WLAN_PROFILE_INFO_LIST
+    internal struct WLAN_PROFILE_INFO_LIST
     {
         public WLAN_PROFILE_INFO[] ProfileInfo;
         public uint dwIndex;

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel;
 
-    public static class NativeErrorHelper
+    internal static class NativeErrorHelper
     {
         public static void ThrowIfNotSuccess(this uint resultCode)
         {

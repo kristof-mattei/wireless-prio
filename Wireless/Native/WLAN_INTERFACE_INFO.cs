@@ -4,7 +4,7 @@ namespace Wireless.Native
     using System.Runtime.InteropServices;
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct WLAN_INTERFACE_INFO
+    internal struct WLAN_INTERFACE_INFO
     {
         /// GUID->_GUID
         public Guid InterfaceGuid;
