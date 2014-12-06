@@ -13,11 +13,11 @@ namespace Wireless.Native
         {
             this.dwNumberOfItems = (uint) Marshal.ReadInt32(ppProfileList);
 
-            this.dwIndex = (uint) Marshal.ReadInt32(ppProfileList, 1 * sizeof(int));
+            this.dwIndex = (uint) Marshal.ReadInt32(ppProfileList, (1 * Marshal.SizeOf(typeof(int))));
 
             this.ProfileInfo = new WLAN_PROFILE_INFO[this.dwNumberOfItems];
 
-            long start = ppProfileList.ToInt64() + 2 * sizeof(int);
+            long start = ppProfileList.ToInt64() + (2 * Marshal.SizeOf(typeof(int)));
 
             int sizeOfWlanProfileInfo = Marshal.SizeOf(typeof (WLAN_PROFILE_INFO));
 
