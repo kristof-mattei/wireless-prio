@@ -1,29 +1,44 @@
-﻿<Window x:Class="WirelessPrio.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+        x:Class="WirelessPrio.MainWindow"
         Title="MainWindow"
-        xmlns:ViewModel="clr-namespace:WirelessPrio.ViewModel"
         Height="561"
-        Width="415">
-    <Window.DataContext>
-        <ViewModel:MainWindowViewModel />
-    </Window.DataContext>
+        Width="415"
+        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ComboBox ItemsSource="{Binding Path=WirelessInterfacesWithProfiles}"
+        <ComboBox ItemsSource="{Binding WirelessInterfacesWithProfiles}"
+                  SelectedItem="{Binding SelectedWirelessInterfaceWithProfiles, Mode=OneWayToSource}"
                   DisplayMemberPath="WirelessInterface.InterfaceDescription"
-                  IsSynchronizedWithCurrentItem="True" />
-        <ListBox Grid.Row="1"
+                  IsSynchronizedWithCurrentItem="True"
+                  Padding="10" />
+        <ListBox Padding="10"
+                 Grid.Row="1"
                  HorizontalContentAlignment="Stretch"
                  IsSynchronizedWithCurrentItem="True"
-                 DataContext="{Binding Path=WirelessInterfacesWithProfiles}"
-                 ItemsSource="{Binding Path=Profiles}"  PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown">
+                 DataContext="{Binding WirelessInterfacesWithProfiles}"
+                 ItemsSource="{Binding Profiles}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="AllowDrop"
+                            Value="True" />
+
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
+
                     <Grid>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseMove">
+                                <Custom:EventToCommand Command="{Binding DataContext.PreviewMouseMove, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60*" />
                             <ColumnDefinition Width="10*" />
@@ -31,11 +46,11 @@
                         <TextBlock Text="{Binding ProfileName}"
                                    VerticalAlignment="Center" />
                         <Button Grid.Column="1"
-                                Command="{Binding Path=DataContext/DeleteProfileCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                CommandParameter="{Binding}">
-                            Delete
-                        </Button>
+                                Command="{Binding DataContext.DeleteProfileCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding}"
+                                Content="Delete" />
                     </Grid>
+
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

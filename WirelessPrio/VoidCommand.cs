@@ -25,6 +25,9 @@
             this._action((T) parameter);
         }
 
+        /// <summary>
+        ///     Api support for Notify changed
+        /// </summary>
         public event EventHandler CanExecuteChanged;
     }
 }
