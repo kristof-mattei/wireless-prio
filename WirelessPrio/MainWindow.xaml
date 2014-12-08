@@ -32,13 +32,7 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-
                     <Grid>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="PreviewMouseMove">
-                                <Custom:EventToCommand Command="{Binding DataContext.PreviewMouseMove, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60*" />
                             <ColumnDefinition Width="10*" />

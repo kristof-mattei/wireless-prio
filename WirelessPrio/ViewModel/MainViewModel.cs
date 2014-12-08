@@ -29,22 +29,10 @@
             this._wirelessService = wirelessService;
 
             this.DeleteProfileCommand = new VoidCommand<Profile>(this.DeleteProfile);
-            this.PreviewMouseMove = Foo;
 
             this.GetWirelessInterfaces();
         }
 
-        private void Foo(object sender, MouseEventArgs e)
-        {
-            //if (sender is ListBoxItem && e.LeftButton == MouseButtonState.Pressed)
-            //{
-            //    ListBoxItem draggedItem = sender as ListBoxItem;
-            //    DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Move);
-            //    draggedItem.IsSelected = true;
-            //}
-        }
-
-        public MouseEventHandler PreviewMouseMove { get; set; }
 
         private async void GetWirelessInterfaces()
         {
@@ -57,7 +45,7 @@
             var selectedWirelessInterfaceWithProfiles = this.SelectedWirelessInterfaceWithProfiles;
 
             // notify the 'backend'
-            // this._wirelessService.DeleteProfile(selectedWirelessInterfaceWithProfiles.WirelessInterface, profile);
+            this._wirelessService.DeleteProfile(selectedWirelessInterfaceWithProfiles.WirelessInterface, profile);
 
             // Remove it from our collection
             this.SelectedWirelessInterfaceWithProfiles.Profiles.Remove(profile);
